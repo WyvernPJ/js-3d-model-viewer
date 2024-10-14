@@ -160,8 +160,12 @@ fullScreenButton.addEventListener('click', function () {
     modelPlayer.resetCamera(scene)
     modelPlayer.showGrid(scene)
     nameElement.innerHTML = 'Sample 01'
-    modelPlayer.loadObject(scene, './assets/dna.obj', null, function () {
-      loadingElement.innerHTML = ''
+    modelPlayer.loadGlb(
+      scene, 
+      './assets/dna.glb',
+      function () {
+        nameElement.innerHTML = 'Sample 01'
+        loadingElement.innerHTML = ''
     })
   })
 
