@@ -144,8 +144,8 @@ fullScreenButton.addEventListener('click', function () {
     loadingElement.innerHTML = progress + '%'
   })
 
-  modelPlayer.loadObject(scene, './assets/sample.obj', null, function () {
-    nameElement.innerHTML = 'Sample 01'
+  modelPlayer.loadObject(scene, './assets/dna.obj', null, function () {
+    nameElement.innerHTML = 'DNA 01'
     loadingElement.innerHTML = ''
   })
 
@@ -160,7 +160,7 @@ fullScreenButton.addEventListener('click', function () {
     modelPlayer.resetCamera(scene)
     modelPlayer.showGrid(scene)
     nameElement.innerHTML = 'Sample 01'
-    modelPlayer.loadObject(scene, './assets/sample.obj', null, function () {
+    modelPlayer.loadObject(scene, './assets/dna.obj', null, function () {
       loadingElement.innerHTML = ''
     })
   })
