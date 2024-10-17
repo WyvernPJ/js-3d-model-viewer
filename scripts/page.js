@@ -33,7 +33,7 @@
   sample1Button.addEventListener('click', function () {
     modelPlayer.clearScene(scene)
     modelPlayer.resetCamera(scene)
-    modelPlayer.hide(scene)
+    modelPlayer.hideGrid(scene)
     nameElement.innerHTML = 'DNA'
     modelPlayer.loadGlb(
       scene, 
@@ -44,7 +44,7 @@
     })
   })
   function openNav() {
-	document.getElementById("mySidenav").style.width = "250px";
+	document.getElementById("mySidenav").style.width = "375px";
   }
 
   function closeNav() {

@@ -21,7 +21,7 @@
         width: 100%; 
         height: 400px; 
         margin: auto; 
-        background: #000000;
+        background: #333333;
         margin-top: 2em;
       }
       .button {
@@ -54,16 +54,16 @@
         margin-right: 2em;
       }
 	  .sidenav {
-		  height: 100%;
+		  height: 95%; /* Adjusted height */
 		  width: 0;
 		  position: fixed;
 		  z-index: 1;
 		  top: 0;
 		  left: 0;
-		  background-color: #111;
+		  background-color: rgb(0, 0 , 0); /* New background color */
 		  overflow-x: hidden;
 		  transition: 0.5s;
-		  padding-top: 60px;
+		  padding-top: 40px; /* Reduced padding */
           text-align: center;
 		}
 
@@ -72,7 +72,7 @@
 		  text-decoration: none;
 		  font-size: 25px;
           text-align: center;
-		  color: #818181;
+		  color: #ffffff; /* Text color changed to white */
 		  display: block;
 		  transition: 0.3s;
 		}
@@ -134,8 +134,8 @@
   
 	<div id="mySidenav" class="sidenav">
 	  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <h2>Sidebar</h2>  
-        <p>Content goes here.</p>  
+        <h2 style="color: white;">Sidebar</h2>  
+        <p style="color: white;">Content goes here.</p>  
 	</div>
 
 	  <script src="./dist/js-3d-model-viewer.js"></script>
