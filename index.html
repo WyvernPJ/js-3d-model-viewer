@@ -53,6 +53,46 @@
       .mr2 {
         margin-right: 2em;
       }
+	  .sidenav {
+		  height: 100%;
+		  width: 0;
+		  position: fixed;
+		  z-index: 1;
+		  top: 0;
+		  left: 0;
+		  background-color: #111;
+		  overflow-x: hidden;
+		  transition: 0.5s;
+		  padding-top: 60px;
+          text-align: center;
+		}
+
+		.sidenav a {
+		  padding: 8px 8px 8px 32px;
+		  text-decoration: none;
+		  font-size: 25px;
+          text-align: center;
+		  color: #818181;
+		  display: block;
+		  transition: 0.3s;
+		}
+
+		.sidenav a:hover {
+		  color: #f1f1f1;
+		}
+
+		.sidenav .closebtn {
+		  position: absolute;
+		  top: 0;
+		  right: 25px;
+		  font-size: 36px;
+		  margin-left: 50px;
+		}
+
+		@media screen and (max-height: 450px) {
+		  .sidenav {padding-top: 15px;}
+		  .sidenav a {font-size: 18px;}
+		}
 	</style>
     <link 
       rel="stylesheet"
@@ -65,7 +105,7 @@
 
     <header class="center"><h1>Nhóm Acid Nucleic: Mô hình DNA</h1></header>
 
-    <div id="viewer" style="">
+    <div id="viewer" style="font-size:30px;cursor:pointer" onclick="openNav()">
     </div>
 
     <div class="center">
@@ -77,9 +117,6 @@
       <button class="button" id="sample-1-button">
         DNA
       </button>
-      <!--button class="button" id="sample-5-button">
-        Sample 5 (.usdz)
-      </button-->
     </div>
 
     <div class="center">
@@ -94,57 +131,17 @@
       </a>
     </footer>
   </div>
-
-  <script src="./dist/js-3d-model-viewer.js"></script>
-  <script>
-  var modelPlayer = this.Js3dModelViewer
-  var nameElement = document.getElementById('name')
-  var loadingElement = document.getElementById('loading')
-  var viewerElement = document.getElementById('viewer')
-  var scene = modelPlayer.prepareScene(viewerElement, {
-    grid: false,
-    background: 'rgb(80, 80, 80)'
-  })
   
+	<div id="mySidenav" class="sidenav">
+	  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <h2>Sidebar</h2>  
+        <p>Content goes here.</p>  
+	</div>
 
-  viewerElement.addEventListener('loading', function (event) {
-    if (event.detail.loaded === 0) {
-      nameElement.innerHTML = 'Đã tải...'
-    } 
-    var progress = Math.floor(100 * event.detail.loaded / event.detail.total)
-    loadingElement.innerHTML = progress + '%'
-  })
+	  <script src="./dist/js-3d-model-viewer.js"></script>
+	  <script src="./scripts/page.js"></script>
 
-  modelPlayer.loadGlb(
-	scene,
-	'./assets/dna.glb',
-	function () {
-		nameElement.innerHTML = 'DNA'
-		loadingElement.innerHTML = ''
-  })
-
-  var fullScreenButton = document.getElementById('fullscreen-button')
-  fullScreenButton.addEventListener('click', function () {
-    modelPlayer.goFullScreen(viewerElement)
-  })
-
-  var sample1Button = document.getElementById('sample-1-button');
-  sample1Button.addEventListener('click', function () {
-    modelPlayer.clearScene(scene)
-    modelPlayer.resetCamera(scene)
-    modelPlayer.hide(scene)
-    nameElement.innerHTML = 'DNA'
-    modelPlayer.loadGlb(
-      scene, 
-      './assets/dna.glb',
-      function () {
-        nameElement.innerHTML = 'DNA'
-        loadingElement.innerHTML = ''
-    })
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/prism.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/components/prism-javascript.js"></script>
-</body>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/prism.js"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/components/prism-javascript.js"></script>
+  </body>
 </html>
