@@ -1,147 +1,267 @@
 <!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mô hình DNA</title>
     <style>
-      body {
-        margin: 0;
-        padding: 0;
-        background: white;
-        font-family: Geneva, sans-serif;
-      }
-      p {
-        margin: 0;
-        padding: 0;
-      }
-      a {
-        color: #3CB371;
-      }
-      #viewer {
-        width: 100%; 
-        height: 400px; 
-        margin: auto; 
-        background: #333333;
-        margin-top: 2em;
-      }
-      .button {
-        border-radius: 0.2em;
-        background-color: white;
-        color: #3CB371;
-        border: 3px solid #3CB371;
-        font-weight: bold;
-        padding: 1em;
-        cursor: pointer;
-      }
-      .center {
-        text-align: center;
-        margin-top: 2em;
-      }
-      canvas {
-        display: block;
-      }
-      pre {
-        padding: 1em;
-        max-width: 900px;
-        margin: auto;
-        margin-top: 4em;
-        font-size: 1.2em;
-      }
-      .footer {
-        padding-bottom: 2em;
-      }
-      .mr2 {
-        margin-right: 2em;
-      }
-	  .sidenav {
-		  height: 95%; /* Adjusted height */
-		  width: 0;
-		  position: fixed;
-		  z-index: 1;
-		  top: 0;
-		  left: 0;
-		  background-color: rgb(0, 0 , 0); /* New background color */
-		  overflow-x: hidden;
-		  transition: 0.5s;
-		  padding-top: 40px; /* Reduced padding */
-          text-align: center;
-		}
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #1c1c1c;
+            font-family: 'Arial', sans-serif;
+            color: white;
+        }
 
-		.sidenav a {
-		  padding: 8px 8px 8px 32px;
-		  text-decoration: none;
-		  font-size: 25px;
-          text-align: center;
-		  color: #ffffff; /* Text color changed to white */
-		  display: block;
-		  transition: 0.3s;
-		}
+        .hero {
+            width: 100%;
+            height: 80vh;
+            background: url('your-image.jpg') center center no-repeat;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
 
-		.sidenav a:hover {
-		  color: #f1f1f1;
-		}
+        .hero-content {
+            text-align: center;
+            color: white;
+        }
 
-		.sidenav .closebtn {
-		  position: absolute;
-		  top: 0;
-		  right: 25px;
-		  font-size: 36px;
-		  margin-left: 50px;
-		}
+        .hero-content h1 {
+            font-size: 3rem;
+            margin: 0;
+        }
 
-		@media screen and (max-height: 450px) {
-		  .sidenav {padding-top: 15px;}
-		  .sidenav a {font-size: 18px;}
-		}
-	</style>
-    <link 
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism.min.css"
-    />
-  </head>
+        .hero-content p {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+        }
 
-  <body>
-  <div class="content">
+        .button {
+            border-radius: 5px;
+            background-color: #3CB371;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: background-color 0.3s;
+        }
 
-    <header class="center"><h1>Nhóm Acid Nucleic: Mô hình DNA</h1></header>
+        .button:hover {
+            background-color: #2a8a58;
+        }
 
-    <div id="viewer" style="font-size:30px;cursor:pointer" onclick="openNav()">
+        /* DNA Model Viewer Section */
+        .viewer {
+            background-color: #f5f5f5;
+            width: 80%;
+            height: 600px;
+            margin: -100px auto 3rem auto;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer; /* Make it look clickable */
+            position: relative;
+        }
+
+        /* Sidebar */
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: white;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidenav a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 20px;
+            color: black;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        .viewer-button {
+            margin-top: 1rem;
+            background-color: #3CB371;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            color: white;
+            transition: 0.3s;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- Hero Section -->
+<div class="hero">
+    <div class="hero-content">
+        <h1>DNA Viewer</h1>
+        <p>Explore the world of DNA models and their structures</p>
     </div>
+</div>
 
-    <div class="center">
-      <span id="name">DNA</span>
-      <span id="loading"></span>
-    </div>
+<!-- DNA Model Viewer Section -->
+<div class="viewer"  onclick="openNav()">
+</div>
 
-    <div class="center">
-      <button class="button" id="sample-1-button">
-        DNA
-      </button>
-    </div>
+<!-- Sidebar -->
+<div class="sidenav" id="mySidenav">
+    <a class="closebtn" href="javascript:void(0)" onclick="closeNav()">&times;</a>
+    <h2 style="color: black; text-align:center">Thông tin về mô hình</h2>
+    <h3 style="color: black;">Quy ước màu:</h3>
+	<img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/DNA_simple2.svg" alt="Qui ước màu">
+    <p style="color: black;">Chuỗi DNA <code>ATGGCCCTGTGGATGCGCCTCCTGCCCCTGCTGGCG</code> là một đoạn thuộc gene mã hóa protein
+        <strong>insulin</strong>, một hormone quan trọng trong việc điều hòa mức đường huyết. Dưới đây là phân tích sâu
+        hơn về vai trò của chuỗi này và protein insulin mà nó mã hóa.</p>
+    <h3 style="color: black;">1. <strong>Gene mã hóa insulin:</strong></h3>
+    <ul style="color: black;">
+        <li>
+            <strong>Gene INS</strong> trên nhiễm sắc thể số 11 của người chứa thông tin mã hóa protein insulin.
+        </li>
+        <li>Chuỗi bạn đã cung cấp là một phần của đoạn mã hóa protein insulin (phần exon).</li>
+        <li>Insulin được tổng hợp dưới dạng một tiền thân gọi là <strong>preproinsulin</strong>. Sau đó, preproinsulin
+            được xử lý thành <strong>proinsulin</strong> và cuối cùng là insulin hoạt động.
+        </li>
+    </ul>
+    <h3 style="color: black;">2. <strong>Quá trình phiên mã và dịch mã:</strong></h3>
+    <ul style="color: black;">
+        <li>
+            <strong>Phiên mã</strong>: Gene INS trong DNA được phiên mã thành RNA thông tin (mRNA) trong nhân tế bào.
+        </li>
+        <li>
+            <strong>Dịch mã</strong>: mRNA rời khỏi nhân và đến ribosome, nơi các codon trong mRNA được dịch thành chuỗi
+            axit amin để tạo thành protein insulin.
+        </li>
+    </ul>
+    <h3 style="color: black;">3. <strong>Phân tích chi tiết từng codon</strong>:</h3>
+    <ul style="color: black;">
+        <li>
+            <strong>ATG</strong>: Codon khởi đầu, mã hóa <strong>Methionine (Met)</strong> – axit amin khởi đầu cho quá
+            trình tổng hợp protein.
+        </li>
+        <li>
+            <strong>GCC</strong>: Mã hóa cho <strong>Alanine (Ala)</strong>.
+        </li>
+        <li>
+            <strong>CTG</strong>: Mã hóa cho <strong>Leucine (Leu)</strong>.
+        </li>
+        <li>
+            <strong>TGG</strong>: Mã hóa cho <strong>Tryptophan (Trp)</strong>.
+        </li>
+        <li>
+            <strong>ATG</strong>: Mã hóa cho <strong>Methionine (Met)</strong>.
+        </li>
+        <li>
+            <strong>CGC</strong>: Mã hóa cho <strong>Arginine (Arg)</strong>.
+        </li>
+        <li>
+            <strong>CTC</strong>: Mã hóa cho <strong>Leucine (Leu)</strong>.
+        </li>
+        <li>
+            <strong>TCC</strong>: Mã hóa cho <strong>Serine (Ser)</strong>.
+        </li>
+        <li>
+            <strong>CCC</strong>: Mã hóa cho <strong>Proline (Pro)</strong>.
+        </li>
+        <li>
+            <strong>CTG</strong>: Mã hóa cho <strong>Leucine (Leu)</strong>.
+        </li>
+        <li>
+            <strong>CTG</strong>: Mã hóa cho <strong>Leucine (Leu)</strong>.
+        </li>
+        <li>
+            <strong>GCG</strong>: Mã hóa cho <strong>Alanine (Ala)</strong>.
+        </li>
+    </ul>
+    <h3 style="color: black;">4. <strong>Vai trò của insulin trong cơ thể</strong>:</h3>
+    <ul style="color: black;">
+        <li>
+            <p><strong>Chức năng chính</strong>: Insulin giúp điều chỉnh lượng đường trong máu bằng cách thúc đẩy các tế
+                bào cơ, gan và mô mỡ hấp thụ glucose từ máu. Nó đóng vai trò quan trọng trong việc giảm lượng đường
+                trong máu sau khi ăn.</p>
+        </li>
+        <li>
+            <p><strong>Cơ chế hoạt động</strong>:</p>
+            <ul>
+                <li>Khi lượng glucose trong máu tăng cao (sau khi ăn), tuyến tụy tiết insulin.</li>
+                <li>Insulin gắn kết với các thụ thể insulin trên bề mặt tế bào, kích hoạt các con đường tín hiệu nội bào
+                    để tế bào hấp thụ glucose.
+                </li>
+                <li>Trong gan, insulin kích thích tổng hợp glycogen từ glucose, giúp dự trữ năng lượng.</li>
+                <li>Trong mô mỡ, insulin giúp lưu trữ glucose dưới dạng triglyceride.</li>
+            </ul>
+        </li>
+    </ul>
+    <h3 style="color: black;">5. <strong>Ý nghĩa y học</strong>:</h3>
+    <ul style="color: black;">
+        <li>
+            <strong>Tiểu đường loại 1</strong>: Xảy ra khi cơ thể không sản xuất đủ insulin do tổn thương tế bào beta
+            của tuyến tụy. Bệnh nhân tiểu đường loại 1 cần bổ sung insulin từ bên ngoài.
+        </li>
+        <li>
+            <strong>Tiểu đường loại 2</strong>: Liên quan đến tình trạng kháng insulin, khi các tế bào không phản ứng
+            hiệu quả với insulin. Điều này dẫn đến việc không sử dụng glucose hiệu quả và tăng lượng đường trong máu.
+        </li>
+    </ul>
+    <h3 style="color: black;">6. <strong>Tầm quan trọng của gene mã hóa insulin</strong>:</h3>
+    <ul style="color: black;">
+        <li>Bất kỳ đột biến nào trong gene INS có thể gây ra sự thay đổi trong cấu trúc hoặc chức năng của insulin, dẫn
+            đến các rối loạn về chuyển hóa glucose, chẳng hạn như bệnh tiểu đường.
+        </li>
+        <li>Gene INS là mục tiêu quan trọng trong các nghiên cứu về di truyền học và bệnh lý liên quan đến chuyển hóa
+            glucose.
+        </li>
+    </ul>
+    <h3 style="color: black;">Kết luận:</h3>
+    <p style="color: black;">Chuỗi DNA này là một phần của gene mã hóa insulin, hormone có vai trò quan trọng trong điều hòa đường huyết.
+        Insulin không chỉ có vai trò sống còn trong việc kiểm soát mức glucose, mà còn có liên quan trực tiếp đến các
+        bệnh lý như tiểu đường.</p>
+	<p style="color: white;">a</p>
+	<p style="color: white;">a</p>
+	<p style="color: white;">a</p>
+</div>
 
-    <div class="center">
-      <button class="button" id="fullscreen-button">
-        Chọn toàn bộ màn hình
-      </button>
-    </div>
 
-    <footer class="center footer">
-      <a href="https://github.com/cgwire/js-3d-model-viewer">
-        Nguồn gốc: cgwire trên github
-      </a>
-    </footer>
-  </div>
-  
-	<div id="mySidenav" class="sidenav">
-	  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <h2 style="color: white;">Sidebar</h2>  
-        <p style="color: white;">Content goes here.</p>  
-	</div>
+<!-- Footer -->
+<footer>
+    <a href="https://github.com/cgwire/js-3d-model-viewer" class="button">Nguồn gốc: cgwire trên github</a>
+</footer>
+<script src="./dist/js-3d-model-viewer.js"></script>
+<script src="./scripts/page.js"></script>
 
-	  <script src="./dist/js-3d-model-viewer.js"></script>
-	  <script src="./scripts/page.js"></script>
-
-	  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/prism.js"></script>
-	  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/components/prism-javascript.js"></script>
-  </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/prism.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/components/prism-javascript.js"></script>
+</body>
 </html>

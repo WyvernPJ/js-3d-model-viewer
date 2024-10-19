@@ -1,19 +1,9 @@
   var modelPlayer = this.Js3dModelViewer
   var nameElement = document.getElementById('name')
-  var loadingElement = document.getElementById('loading')
   var viewerElement = document.getElementById('viewer')
   var scene = modelPlayer.prepareScene(viewerElement, {
     grid: false,
     background: 'rgb(80, 80, 80)'
-  })
-  
-
-  viewerElement.addEventListener('loading', function (event) {
-    if (event.detail.loaded === 0) {
-      nameElement.innerHTML = 'Đã tải...'
-    } 
-    var progress = Math.floor(100 * event.detail.loaded / event.detail.total)
-    loadingElement.innerHTML = progress + '%'
   })
 
   modelPlayer.loadGlb(
@@ -44,7 +34,7 @@
     })
   })
   function openNav() {
-	document.getElementById("mySidenav").style.width = "375px";
+	document.getElementById("mySidenav").style.width = "475px";
   }
 
   function closeNav() {
