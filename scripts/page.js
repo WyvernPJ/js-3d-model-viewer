@@ -34,7 +34,7 @@
     })
   })
   function openNav() {
-	document.getElementById("mySidenav").style.width = "475px";
+    document.getElementById("mySidenav").style.width = "35%";
   }
 
   function closeNav() {
